@@ -3,8 +3,26 @@ type MapEmbedProps = {
 };
 
 export default function MapEmbed({ locations }: MapEmbedProps) {
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const query = encodeURIComponent(locations.join(" "));
-  const src = `https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=${query}`;
+  const src = `https://www.google.com/maps/embed/v1/search?key=${apiKey}&q=${query}`;
+
+  if (apiKey) {
+    return (
+      <div className="rounded-xl overflow-hidden border border-secondary/50 shadow-sm bg-white">
+        <iframe
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          src={src}
+          className="aspect-[16/9] w-full h-full"
+          title="Rubangatek Ministries Locations Map"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-xl overflow-hidden border border-secondary/50 shadow-sm bg-secondary/30">
@@ -30,10 +48,11 @@ export default function MapEmbed({ locations }: MapEmbedProps) {
             </a>
           </p>
           <p className="text-xs text-text-muted/40 mt-2">
-            (Add a Google Maps API key to enable the embedded map)
+            (Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to env variables to enable embedded map)
           </p>
         </div>
       </div>
     </div>
   );
 }
+

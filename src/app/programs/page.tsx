@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import Illustration from "@/components/Illustration";
+import Image from "next/image";
 import { programs } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     "Rubangatek Ministries runs three core programs: Elderly Support, Child Education Support, and Community Outreach in Mukono and Jinja, Uganda.",
 };
 
-const illustrationMap: Record<string, "elderly" | "education" | "community"> = {
-  "elderly-support": "elderly",
-  "child-education": "education",
-  "community-outreach": "community",
+const imageMap: Record<string, string> = {
+  "elderly-support": "/images/ugandan_elderly_care.png",
+  "child-education": "/images/ugandan_children_education.png",
+  "community-outreach": "/images/ugandan_community_dev.png",
 };
 
 export default function ProgramsPage() {
@@ -35,8 +35,14 @@ export default function ProgramsPage() {
               className={`grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center`}
             >
               <div className={`${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}>
-                <div className="h-64 sm:h-80 rounded-xl overflow-hidden bg-secondary shadow-sm" aria-label={program.imageAlt} role="img">
-                  <Illustration variant={illustrationMap[program.slug]} className="h-full w-full" />
+                <div className="relative h-64 sm:h-80 rounded-xl overflow-hidden bg-secondary shadow-sm">
+                  <Image
+                    src={imageMap[program.slug]}
+                    alt={program.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
               </div>
               <div className={index % 2 === 1 ? "lg:order-1" : "lg:order-2"}>
@@ -54,3 +60,4 @@ export default function ProgramsPage() {
     </>
   );
 }
+

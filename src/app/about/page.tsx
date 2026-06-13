@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/Hero";
-import Illustration from "@/components/Illustration";
 import { aboutContent } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -97,8 +97,14 @@ export default function AboutPage() {
                 key={place.name}
                 className="bg-white rounded-xl border border-secondary/50 shadow-sm overflow-hidden"
               >
-                <div className="h-40 bg-secondary" aria-label={`Photo of ${place.name}`} role="img">
-                  <Illustration variant="location" className="h-full w-full" />
+                <div className="h-48 relative bg-secondary" aria-label={`Photo of ${place.name}`} role="img">
+                  <Image
+                    src={place.name === "Mukono" ? "/images/mukono_work.png" : "/images/jinja_work.png"}
+                    alt={`Our work in ${place.name}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-text-primary mb-2">

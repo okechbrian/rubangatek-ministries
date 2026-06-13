@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       customizations: {
         title: "Rubangatek Ministries",
         description: "Donation to support vulnerable elderly and children",
-        logo: `${baseUrl}/icon.svg`,
+        logo: `${baseUrl}/images/rubangatek_logo_cropped.png`,
       },
       meta: {
         source: "rubangatek_website",

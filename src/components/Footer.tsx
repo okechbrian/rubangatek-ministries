@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
-            <Logo className="[&_span]:text-white" />
+            <Logo className="[&_span]:text-white [&_img]:brightness-0 [&_img]:invert" />
             <p className="mt-4 text-sm text-white/80 leading-relaxed max-w-xs">
               Supporting vulnerable elderly and children in Uganda through compassion, dignity, and service.
             </p>
